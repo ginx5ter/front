@@ -221,7 +221,7 @@ export function CreateTaskModal({ onClose, onCreate, defaultVisibility = 'person
                   style={{
                     backgroundColor: tag.color + '25',
                     color: tag.color,
-                    ringColor: tag.color,
+                    outline: selectedTagIds.includes(tag.id) ? `2px solid ${tag.color}` : "none", outlineOffset: "2px",
                   }}
                 >
                   {tag.name}
