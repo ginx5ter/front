@@ -17,7 +17,7 @@ type FilterStatus = 'all' | 'active' | 'completed';
 const urgencyOrder: Record<TaskUrgency, number> = { critical: 4, high: 3, medium: 2, low: 1 };
 
 export function TasksPage({ visibility, title, subtitle }: TasksPageProps) {
-  const { tasks, loading, createTask, updateTask, deleteTask, toggleStatus } = useTasks(visibility);
+  const { tasks, loading, createTask, updateTask, deleteTask, toggleStatus, refetch } = useTasks(visibility);
   const [showCreate, setShowCreate] = useState(false);
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState<SortKey>('created_at');
