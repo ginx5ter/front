@@ -171,7 +171,7 @@ export function TasksPage({ visibility, title, subtitle }: TasksPageProps) {
                 task={task}
                 onToggle={toggleStatus}
                 onDelete={deleteTask}
-                onUpdate={() => {}}
+                onUpdate={refetch}
               />
             </div>
           ))}
