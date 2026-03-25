@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    --user-bg: none;
+    --user-bg-active: 0;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0e0e12;
+    color: #f0ead6;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* User-defined background */
+  #root {
+    position: relative;
+    min-height: 100dvh;
+  }
+
+  #root::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--user-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: calc(var(--user-bg-active) * 0.18);
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #root > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(201,169,110,0.2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(201,169,110,0.4); }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid rgba(201,169,110,0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(28, 28, 38, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201,169,110,0.08);
+  }
+
+  .glass-strong {
+    background: rgba(22, 22, 30, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(201,169,110,0.12);
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-light text-bg-primary font-medium
+           px-4 py-2 rounded-lg transition-all duration-200
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-white/5 text-text-secondary hover:text-text-primary
+           px-3 py-2 rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply bg-urgency-critical/20 hover:bg-urgency-critical/30 text-urgency-critical
+           px-4 py-2 rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full bg-bg-secondary border border-border rounded-lg
+           px-3 py-2.5 text-text-primary placeholder-text-muted
+           focus:outline-none focus:border-accent/40 transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-bg-card border border-border rounded-xl p-4 transition-all duration-200;
+  }
+
+  .urgency-dot-low    { @apply w-2 h-2 rounded-full bg-urgency-low; }
+  .urgency-dot-medium { @apply w-2 h-2 rounded-full bg-urgency-medium; }
+  .urgency-dot-high   { @apply w-2 h-2 rounded-full bg-urgency-high; }
+  .urgency-dot-critical { @apply w-2 h-2 rounded-full bg-urgency-critical animate-pulse; }
+}
